@@ -17,8 +17,8 @@ public class Booking {
     @GeneratedValue
     private int id;
     private Slot slot;
-    // private long uId;
-    // private long coachId;
+    private int candidateId;
+    private int coachId;
     private String desc;
     private Status status;
 
@@ -30,6 +30,22 @@ public class Booking {
         this.setSlot(slot);
         this.setDesc(desc);
         this.setStatus(status);
+    }
+
+    public int getCoachId() {
+        return coachId;
+    }
+
+    public void setCoachId(int coachId) {
+        this.coachId = coachId;
+    }
+
+    public int getCandidateId() {
+        return candidateId;
+    }
+
+    public void setCandidateId(int candidateId) {
+        this.candidateId = candidateId;
     }
 
     public Slot getSlot() {

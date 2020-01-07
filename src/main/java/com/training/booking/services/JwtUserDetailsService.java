@@ -10,7 +10,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.training.booking.dto.UserDTO;
+import com.training.booking.entities.Candidate;
+import com.training.booking.entities.Coach;
 import com.training.booking.entities.User;
+import com.training.booking.entities.enums.UserType;
 import com.training.booking.repositories.UserRepository;
 
 @Service
@@ -34,9 +37,19 @@ public class JwtUserDetailsService implements UserDetailsService {
     }
 
     public User save(UserDTO user) {
-        User newUser = new User();
-        newUser.setEmail(user.getEmail());
-        newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-        return userRepository.saveAndFlush(newUser);
+        User newUser = new User(user.getEmail(), user.getEmail(), bcryptEncoder.encode(user.getPassword()));
+        User castedUser = this.getUserByType(user.getUserType(), newUser);
+        return userRepository.saveAndFlush(castedUser);
+    }
+
+    private User getUserByType(UserType userType, User newUser) {
+        switch (userType) {
+            case CANDIDATE :
+                return new Candidate(newUser.getName() , newUser.getEmail(), newUser.getPassword());
+            case COACH :
+                return new Coach(newUser.getName() , newUser.getEmail(), newUser.getPassword());
+            default:
+                return newUser;
+        }
     }
 }

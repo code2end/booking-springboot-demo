@@ -5,8 +5,24 @@ package com.training.booking.entities;
  */
 public class enums {
 
+    public enum UserType {
+        CANDIDATE, COACH, ADMIN;
+    }
+
     public enum Status {
         INITIAL, PENDING, BOOKED, ONGOING, COMPLETED;
+    }
+
+    public enum Day {
+        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
+    }
+    
+    public enum Level {
+        AMATEUR, SEMI_PRO, PRO, WORLD_CLASS, LEGENDARY;
+    }
+
+    public enum Sport {
+        BASKETBALL, CRICKET, FOOTBALL, TABLE_TENNIS, BADMINTON, TENNIS;
     }
 
     public enum Slot {

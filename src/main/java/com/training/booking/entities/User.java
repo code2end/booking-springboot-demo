@@ -1,13 +1,20 @@
 package com.training.booking.entities;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  * UserEntity
  */
 @Entity
+@Inheritance(
+    strategy = InheritanceType.SINGLE_TABLE
+)
+@DiscriminatorColumn(name="user_type")
 public class User {
 
     @Id
@@ -16,8 +23,6 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private String authToken;
-    private double level;
 
     public User() {
         super();
@@ -27,30 +32,6 @@ public class User {
         this.setName(name);
         this.setEmail(email);
         this.setPassword(password);
-        this.setLevel(0.0);
-    }
-
-    public User(String name, String email, String password, double level) {
-        this.setName(name);
-        this.setEmail(email);
-        this.setPassword(password);
-        this.setLevel(level);
-    }
-
-    public double getLevel() {
-        return level;
-    }
-
-    public void setLevel(double level) {
-        this.level = level;
-    }
-
-    public String getAuthToken() {
-        return authToken;
-    }
-
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
     }
 
     public String getPassword() {
