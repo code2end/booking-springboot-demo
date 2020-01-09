@@ -1,5 +1,6 @@
 package com.training.booking.entities;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ public class User {
     @GeneratedValue
     private int id;
     private String name;
+    @Column(unique = true)
     private String email;
     private String password;
 

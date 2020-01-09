@@ -12,6 +12,10 @@ public class Candidate extends User {
 
     private Level level;
 
+    public Candidate() {
+        super();
+    }
+
     public Candidate(String name, String email, String password) {
         super(name, email, password);
     }

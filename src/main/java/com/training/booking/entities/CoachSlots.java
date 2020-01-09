@@ -3,6 +3,8 @@ package com.training.booking.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.training.booking.entities.enums.Day;
 import com.training.booking.entities.enums.Level;
@@ -12,6 +14,9 @@ import com.training.booking.entities.enums.Sport;
 /**
  * CoachSlots
  */
+@Table(
+   uniqueConstraints = {@UniqueConstraint(columnNames = {"coachId", "slot", "day"})}
+)
 @Entity
 public class CoachSlots {
 
@@ -23,6 +28,10 @@ public class CoachSlots {
     private Day day;
     private Sport sport;
     private Level level;
+
+    public CoachSlots() {
+        super();
+    }
 
     public CoachSlots(int _coachId, Slot _slot, Day _day, Sport _sport, Level _level) {
         super();

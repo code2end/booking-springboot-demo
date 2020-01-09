@@ -4,6 +4,7 @@ import static org.mockito.Mockito.when;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.training.booking.entities.User;
+import com.training.booking.models.UserDTO;
 import com.training.booking.services.UserService;
 
 import org.junit.jupiter.api.Test;
@@ -36,8 +37,9 @@ class UserControllerTests {
 
     @Test
     void addUser() throws Exception {
+        UserDTO userDTO = new UserDTO("john@ongrid.in", "pass");
         User user = new User("John", "john@ongrid.in", "pass");
-        when(userService.save(user)).thenReturn(user);
+        when(userService.saveCandidate(userDTO)).thenReturn(user);
 
         ObjectMapper objectMapper = new ObjectMapper();
         String userJSON = objectMapper.writeValueAsString(user);

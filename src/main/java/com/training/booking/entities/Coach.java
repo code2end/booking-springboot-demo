@@ -10,6 +10,10 @@ public class Coach extends User {
 
     private double rating;
 
+    public Coach() {
+        super();
+    }
+
     public Coach(String name, String email, String password) {
         super(name, email, password);
     }
